@@ -9,6 +9,16 @@ window.locales.en = {
             "cloud_panel": "Cloud Panel",
             "start_project": "Start Project"
         },
+        "about": {
+            "badge": "WHO WE ARE",
+            "title": "Architects of the",
+            "title_highlight": "Digital Future",
+            "desc": "We are not just developers; we are problem solvers passionate about efficiency. Born from the need for reliable infrastructure and secure code, FNetic bridges the gap between complex cloud technologies and business goals.",
+            "point1_title": "Innovation Driven",
+            "point1_desc": "Always exploring the bleeding edge of tech to give you a competitive advantage.",
+            "point2_title": "Security Focused",
+            "point2_desc": "Security is embedded in our DNA, not added as a plugin."
+        },
         "hero": {
             "badge": "DevOps-First Software House",
             "title_start": "Build. Scale.",

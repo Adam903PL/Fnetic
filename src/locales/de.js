@@ -9,6 +9,16 @@ window.locales.de = {
             "cloud_panel": "Cloud-Panel",
             "start_project": "Projekt starten"
         },
+        "about": {
+            "badge": "WER WIR SIND",
+            "title": "Architekten der",
+            "title_highlight": "Digitalen Zukunft",
+            "desc": "Wir sind nicht nur Entwickler; wir sind Problemlöser mit Leidenschaft für Effizienz. Entstanden aus dem Bedarf an zuverlässiger Infrastruktur und sicherem Code.",
+            "point1_title": "Innovationsgetrieben",
+            "point1_desc": "Wir erforschen stets modernste Technologien für Ihren Wettbewerbsvorteil.",
+            "point2_title": "Sicherheitsfokussiert",
+            "point2_desc": "Sicherheit ist in unserer DNA verankert, kein nachträgliches Plugin."
+        },
         "hero": {
             "badge": "DevOps-First Softwarehaus",
             "title_start": "Bauen. Skalieren.",

@@ -9,6 +9,16 @@ window.locales.pl = {
             "cloud_panel": "Panel Chmury",
             "start_project": "Rozpocznij Projekt"
         },
+        "about": {
+            "badge": "KIM JESTEŚMY",
+            "title": "Architekci",
+            "title_highlight": "Cyfrowej Przyszłości",
+            "desc": "Nie jesteśmy tylko programistami; rozwiązujemy problemy z pasją do wydajności. Zrodzeni z potrzeby niezawodnej infrastruktury i bezpiecznego kodu, FNetic łączy skomplikowane technologie chmurowe z celami biznesowymi.",
+            "point1_title": "Napędzani Innowacją",
+            "point1_desc": "Zawsze eksplorujemy najnowsze technologie, by dać Ci przewagę konkurencyjną.",
+            "point2_title": "Skupieni na Bezpieczeństwie",
+            "point2_desc": "Bezpieczeństwo mamy w DNA, nie jest to tylko dodatkowa wtyczka."
+        },
         "hero": {
             "badge": "DevOps-First Software House",
             "title_start": "Buduj. Skaluj.",
