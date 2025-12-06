@@ -31,16 +31,109 @@ h3,
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
 
-::-webkit-scrollbar {
+.magic-card {
+    position: relative;
+    background: transparent;
+    border-radius: 1rem;
+    padding: 2px;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform 0.3s ease;
+}
+
+
+.magic-card::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from var(--angle),
+            transparent 70%,
+            #06b6d4,
+            #8b5cf6,
+            #06b6d4);
+    animation: spin 4s linear infinite;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.magic-card:hover::after {
+    opacity: 1;
+}
+
+.magic-card.always-active::after {
+    opacity: 1;
+    animation: spin 3s linear infinite;
+}
+
+.magic-card.always-active {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.15);
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg;
+    }
+}
+
+
+.card-inner {
+    background: #0f172a;
+    border-radius: 0.9rem;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 10;
+}
+
+
+.magic-card::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y),
+            rgba(255, 255, 255, 0.06),
+            transparent 40%);
+    z-index: 20;
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    border-radius: 1rem;
+}
+
+.magic-card:hover::before {
+    opacity: 1;
+}
+
+
+.custom-scrollbar::-webkit-scrollbar {
     width: 6px;
 }
 
-::-webkit-scrollbar-track {
-    background: #020617;
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #0f172a;
 }
 
-::-webkit-scrollbar-thumb {
-    background: #06b6d4;
-    border-radius: 10px;
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #334155;
+    border-radius: 4px;
+}
+
+
+.typed-cursor {
+    color: #4ade80;
+    font-size: 1.2rem;
 }

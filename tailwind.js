@@ -2,19 +2,16 @@ tailwind.config = {
     theme: {
         extend: {
             colors: {
-                brand: {
-                    dark: '#020617',
-                    card: '#0f172a',
-                    accent: '#06b6d4',
-                    blue: '#3b82f6',
-                }
+                'brand-dark': '#020617',
+                'brand-accent': '#06b6d4',
+                'brand-purple': '#8b5cf6',
             },
             fontFamily: {
-                orbitron: ['Orbitron', 'sans-serif'],
-                inter: ['Inter', 'sans-serif'],
+                tech: ['Orbitron', 'sans-serif'],
+                sans: ['Inter', 'sans-serif'],
             },
-            backgroundImage: {
-                'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+            animation: {
+                'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
             }
         }
     }

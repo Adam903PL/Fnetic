@@ -35,51 +35,94 @@
 
 <body class="relative min-h-screen flex flex-col">
 
-    <!-- ========================================= -->
-    <!-- NAVIGATION / HEADER SECTION -->
-    <!-- Simplified header for subpages -->
-    <!-- ========================================= -->
 
 
-    <header class="fixed w-full z-50 py-4 px-6 glass border-b-0 transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto flex items-center justify-between">
-            <a href="index.html" class="flex items-center gap-3 font-tech text-xl font-bold text-white cursor-pointer">
-                <div class="w-10 h-10 flex items-center justify-center">
 
+    <header class="fixed w-full z-50 transition-all duration-300 py-3 px-4 md:py-4 md:px-6 glass border-b-0"
+        id="navbar">
+        <div class="max-w-7xl mx-auto flex items-center justify-between relative flex-nowrap">
+
+            <a href="index.html"
+                class="flex items-center gap-2 md:gap-3 font-tech text-lg md:text-xl font-bold text-white cursor-pointer z-50 whitespace-nowrap">
+                <div class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0">
                     <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain" alt="FNeticCloud">
                 </div>
-                FNeticCloud
+                <span>FNeticCloud</span>
             </a>
 
             <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
-                <a href="index.html" class="hover:text-brand-accent transition-colors">Home</a>
-                <a href="index.html#about" class="hover:text-brand-accent transition-colors">About</a>
-                <a href="index.html#services" class="hover:text-brand-accent transition-colors">Services</a>
-                <a href="contact.html" class="text-brand-accent font-bold">Contact</a>
+                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2">Home</a>
+                <a href="index.html#about"
+                    class="hover:text-brand-accent transition-colors flex items-center gap-2">About</a>
+                <a href="index.html#services"
+                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Services</a>
+                <a href="contact.html"
+                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Contact</a>
             </nav>
 
-            <div class="flex items-center gap-6">
-                <a href="#" class="relative group font-tech text-sm font-bold">
+            <div class="hidden md:flex items-center gap-6">
+                <a href="https://cloud.fnetic.pl" target="_blank"
+                    class="text-gray-300 hover:text-white transition-colors text-sm font-bold flex items-center gap-2">
+                    <i class="fas fa-cloud"></i> Cloud Panel
+                </a>
+
+                <a href="contact.html" class="relative group font-tech text-sm font-bold">
                     <div
                         class="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200">
                     </div>
                     <button class="relative px-6 py-3 bg-black rounded-lg leading-none flex items-center gap-2">
-                        <i class="fas fa-user"></i> CLIENT SPACE
+                        Start Project <i class="fas fa-arrow-right ml-1"></i>
+                    </button>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none z-[60] relative p-2">
+                <i class="fas fa-bars transition-all duration-300"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-5 h-screen w-screen top-0 left-0">
+
+            <div class="flex flex-col items-center gap-2 mb-6">
+                <div class="w-16 h-16 bg-white/5 rounded-full p-2 border border-white/10">
+                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain" alt="FNeticCloud">
+                </div>
+                <span class="font-tech text-2xl font-bold text-white tracking-widest">FNeticCloud</span>
+            </div>
+
+            <nav class="flex flex-col items-center gap-6 text-xl font-medium text-white">
+                <a href="index.html" class="mobile-link hover:text-brand-accent transition-colors">Home</a>
+                <a href="index.html#about" class="mobile-link hover:text-brand-accent transition-colors">About</a>
+                <a href="index.html#services" class="mobile-link hover:text-brand-accent transition-colors">Services</a>
+                <a href="contact.html" class="mobile-link text-brand-accent font-bold">Contact</a>
+            </nav>
+
+            <div class="flex flex-col items-center gap-4 mt-4 w-full px-10">
+                <a href="https://cloud.fnetic.pl" target="_blank"
+                    class="text-gray-300 hover:text-white text-lg font-bold flex items-center gap-2">
+                    <i class="fas fa-cloud"></i> Cloud Panel
+                </a>
+
+                <a href="contact.html"
+                    class="relative group font-tech text-lg font-bold w-full max-w-xs text-center mt-2">
+                    <div
+                        class="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200">
+                    </div>
+                    <button
+                        class="relative w-full px-6 py-4 bg-black rounded-lg leading-none flex items-center justify-center gap-2">
+                        Start Project <i class="fas fa-arrow-right"></i>
                     </button>
                 </a>
             </div>
         </div>
     </header>
 
-
     <div id="vanta-bg" class="fixed inset-0 z-0 pointer-events-none"></div>
     <div class="fixed inset-0 bg-brand-dark/90 z-0 pointer-events-none"></div>
 
 
-    <!-- ========================================= -->
-    <!-- BACKGROUND & MAIN CONTAINER -->
-    <!-- Contains Vanta.js background and main content grid -->
-    <!-- ========================================= -->
+
     <main class="relative z-10 flex-grow pt-32 pb-20 px-6">
 
 
@@ -195,169 +238,85 @@
         </div>
     </main>
 
+    <footer class="border-t border-white/5 bg-black/80 backdrop-blur-xl py-16 px-6 text-sm">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
 
-    <!-- ========================================= -->
-    <!-- FOOTER SECTION -->
-    <!-- Links, legal info, and copyright -->
-    <!-- ========================================= -->
-    <footer class="py-12 border-t border-white/5 bg-black/40 relative z-10">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-12">
-                <div>
-                    <div class="font-tech text-white font-bold flex items-center gap-3 mb-4">
-                        <div
-                            class="w-8 h-8 bg-gradient-to-br from-brand-accent to-blue-500 rounded-lg flex items-center justify-center">
-
-                            <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain" alt="Logo">
-                        </div>
-                        FNeticCloud
+                <div class="space-y-4">
+                    <div class="flex items-center gap-2 font-tech text-xl font-bold text-white">
+                        <img src="../../public/img/fneticlogo.png" class="h-6 w-auto" alt="FNetic Logo"> FNetic
                     </div>
-                    <p class="text-gray-400 text-sm">Next-generation hosting platform.</p>
-                    <div class="flex gap-4 mt-4">
-                        <a href="#" class="hover:text-brand-accent transition text-gray-400"><i
-                                class="fab fa-discord text-xl"></i></a>
-                        <a href="#" class="hover:text-brand-accent transition text-gray-400"><i
-                                class="fab fa-twitter text-xl"></i></a>
-                        <a href="#" class="hover:text-brand-accent transition text-gray-400"><i
-                                class="fab fa-youtube text-xl"></i></a>
+                    <p class="text-gray-400 leading-relaxed">
+                        Building the future of tech. Reliable software, scalable cloud infrastructure, and
+                        uncompromising security.
+                    </p>
+                    <div class="flex gap-4 pt-2">
+                        <a href="https://github.com/fneticIT" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                            <i class="fab fa-github text-lg"></i>
+                        </a>
+                        <a href="https://www.instagram.com/fnetic.it/" target="_blank"
+                            class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                            <i class="fab fa-instagram text-lg"></i>
+                        </a>
                     </div>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-white mb-4">Products</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-brand-accent transition">Game Servers</a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition">Cloud Hosting</a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition">Discord Bots</a></li>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Menu</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#home" class="hover:text-brand-accent transition-colors">Home</a></li>
+                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Services</a></li>
+                        <li><a href="#process" class="hover:text-brand-accent transition-colors">Engagement Models</a>
+                        </li>
+                        <li><a href="/src/pages/contact.html"
+                                class="hover:text-brand-accent transition-colors">Contact</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-white mb-4">Company</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="index.html#about" class="hover:text-brand-accent transition">About</a></li>
-                        <li><a href="contact.html" class="hover:text-brand-accent transition">Contact</a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition">Careers</a></li>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Legal & Client</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li>
+                            <a href="https://ptero.fnetic.pl" target="_blank"
+                                class="flex items-center gap-2 hover:text-brand-accent transition-colors text-white font-medium">
+                                <i class="fas fa-gamepad text-brand-accent"></i> Game Panel
+                            </a>
+                        </li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors">SLA Agreement</a></li>
                     </ul>
                 </div>
+
                 <div>
-                    <h4 class="font-bold text-white mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="hover:text-brand-accent transition">Terms</a></li>
-                        <li><a href="#" class="hover:text-brand-accent transition">Privacy</a></li>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Company Details
+                    </h4>
+                    <ul class="space-y-4 text-gray-400">
+
+                        <li>
+                            <a href="mailto:support@fnetic.pl"
+                                class="flex items-center gap-2 hover:text-white transition-colors mb-2">
+                                <i class="fas fa-envelope text-brand-accent"></i> support@fnetic.pl
+                            </a>
+                            <a href="tel:+48729791733"
+                                class="flex items-center gap-2 hover:text-white transition-colors">
+                                <i class="fas fa-phone text-brand-accent"></i> +48 729 791 733
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
-            <div class="pt-8 border-t border-white/5 text-center text-sm text-gray-500">
-                <p>© 2025 FNeticCloud. Made with <i class="fas fa-heart text-red-500"></i> in Poland</p>
+
+            <div
+                class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+                <div>&copy; 2025 FNetic Solutions. All rights reserved.</div>
+                <div>Designed & Developed by FNetic Team.</div>
             </div>
         </div>
     </footer>
+    <script src="../js/main.js"></script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-            try {
-                VANTA.NET({
-                    el: "#vanta-bg",
-                    mouseControls: true,
-                    touchControls: true,
-                    gyroControls: false,
-                    minHeight: 200.00,
-                    minWidth: 200.00,
-                    scale: 1.00,
-                    scaleMobile: 1.00,
-                    color: 0x06b6d4,
-                    backgroundColor: 0x020617,
-                    points: 10.00,
-                    maxDistance: 22.00,
-                    spacing: 18.00,
-                    showDots: false
-                });
-            } catch (e) {
-                console.log("Vanta not loaded or error");
-            }
-
-
-            gsap.from(".gsap-fade-in", {
-                y: 30,
-                opacity: 0,
-                duration: 1,
-                stagger: 0.2,
-                ease: "power3.out",
-                delay: 0.2
-            });
-
-
-            const navbar = document.getElementById('navbar');
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    navbar.classList.add('bg-brand-dark/80', 'backdrop-blur-xl', 'border-b-white/10');
-                    navbar.classList.remove('border-b-0');
-                } else {
-                    navbar.classList.remove('bg-brand-dark/80', 'backdrop-blur-xl', 'border-b-white/10');
-                    navbar.classList.add('border-b-0');
-                }
-            });
-
-
-            function getQueryParam(name) {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get(name);
-            }
-
-            const status = getQueryParam('sent');
-            const alertContainer = document.getElementById('alert-container');
-
-            if (status && alertContainer) {
-                let message = '';
-                let classes = '';
-                let icon = '';
-
-                if (status === 'success') {
-                    message = 'Message sent successfully! We will get back to you soon.';
-                    classes = 'bg-green-500/10 border-green-500/50 text-green-400';
-                    icon = '<i class="fas fa-check-circle text-xl"></i>';
-                } else if (status === 'error') {
-                    message = 'Something went wrong. Please try again later.';
-                    classes = 'bg-red-500/10 border-red-500/50 text-red-400';
-                    icon = '<i class="fas fa-exclamation-circle text-xl"></i>';
-                }
-
-                if (message) {
-                    alertContainer.innerHTML = `
-                        <div class="${classes} backdrop-blur-md border p-4 rounded-xl shadow-2xl flex items-center gap-4 transform translate-y-[-20px] opacity-0 transition-all duration-500" id="toast-alert">
-                            ${icon}
-                            <div>
-                                <h4 class="font-bold text-sm uppercase tracking-wider">Notification</h4>
-                                <p class="text-sm opacity-90">${message}</p>
-                            </div>
-                            <button onclick="this.parentElement.remove()" class="ml-auto hover:opacity-70"><i class="fas fa-times"></i></button>
-                        </div>
-                    `;
-
-
-                    setTimeout(() => {
-                        const toast = document.getElementById('toast-alert');
-                        if (toast) {
-                            toast.classList.remove('translate-y-[-20px]', 'opacity-0');
-                        }
-                    }, 100);
-
-
-                    setTimeout(() => {
-                        const toast = document.getElementById('toast-alert');
-                        if (toast) {
-                            toast.classList.add('translate-y-[-20px]', 'opacity-0');
-                            setTimeout(() => toast.remove(), 500);
-                        }
-                    }, 6000);
-
-
-                    const newURL = window.location.protocol + "//" + window.location.host + window.location.pathname;
-                    window.history.replaceState({}, document.title, newURL);
-                }
-            }
-        });
-    </script>
 </body>
 
 </html>
