@@ -19,21 +19,20 @@
     <link rel="stylesheet" href="../css/main.css">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-
-    </script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="../../tailwind.js"></script>
 
-</head>
+    <script src="https://unpkg.com/i18next@23.2.3/i18next.min.js"></script>
+    <script
+        src="https://unpkg.com/i18next-browser-languagedetector@7.1.0/i18nextBrowserLanguageDetector.min.js"></script>
 
-<body class="relative min-h-screen flex flex-col">
+    <!-- Load Locales -->
+    <script src="../locales/en.js"></script>
+    <script src="../locales/pl.js"></script>
+    <script src="../locales/de.js"></script>
+
+    <script src="../js/i18n.js"></script>
+
+
 
 
 
@@ -51,27 +50,42 @@
             </a>
 
             <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
-                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2">Home</a>
-                <a href="index.html#about"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">About</a>
-                <a href="index.html#services"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Services</a>
-                <a href="contact.html"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Contact</a>
+                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.home">Home</a>
+                <a href="index.html#about" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.about">About</a>
+                <a href="index.html#services" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.services">Services</a>
+                <a href="contact.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.contact">Contact</a>
             </nav>
 
             <div class="hidden md:flex items-center gap-6">
                 <a href="https://cloud.fnetic.pl" target="_blank"
                     class="text-gray-300 hover:text-white transition-colors text-sm font-bold flex items-center gap-2">
-                    <i class="fas fa-cloud"></i> Cloud Panel
+                    <i class="fas fa-cloud"></i> <span data-i18n="nav.cloud_panel">Cloud Panel</span>
                 </a>
 
-                <a href="contact.html" class="relative group font-tech text-sm font-bold">
-                    <div
-                        class="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200">
-                    </div>
-                    <button class="relative px-6 py-3 bg-black rounded-lg leading-none flex items-center gap-2">
-                        Start Project <i class="fas fa-arrow-right ml-1"></i>
+                <!-- Language Switcher Desktop -->
+                <div class="flex items-center gap-2 ml-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-sm font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de">DE</button>
+                </div>
+
+                <a href="contact.html" class="group">
+                    <button
+                        class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
+                        <span data-i18n="nav.start_project">Start Project</span> <i
+                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </a>
             </div>
@@ -99,19 +113,30 @@
             </nav>
 
             <div class="flex flex-col items-center gap-4 mt-4 w-full px-10">
+                <!-- Language Switcher Mobile -->
+                <div class="flex items-center gap-4 mb-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-lg font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de">DE</button>
+                </div>
                 <a href="https://cloud.fnetic.pl" target="_blank"
                     class="text-gray-300 hover:text-white text-lg font-bold flex items-center gap-2">
                     <i class="fas fa-cloud"></i> Cloud Panel
                 </a>
 
-                <a href="contact.html"
-                    class="relative group font-tech text-lg font-bold w-full max-w-xs text-center mt-2">
-                    <div
-                        class="absolute -inset-0.5 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg blur opacity-60 group-hover:opacity-100 transition duration-200">
-                    </div>
+                <a href="contact.html" class="group">
                     <button
-                        class="relative w-full px-6 py-4 bg-black rounded-lg leading-none flex items-center justify-center gap-2">
-                        Start Project <i class="fas fa-arrow-right"></i>
+                        class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
+                        Start Project <i
+                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </a>
             </div>
@@ -140,14 +165,14 @@
                 <div>
                     <div
                         class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/10 text-brand-accent text-sm font-bold mb-6 border border-brand-accent/20">
-                        <i class="fas fa-envelope-open-text"></i> Support Center
+                        <i class="fas fa-envelope-open-text"></i> <span data-i18n="contact.badge">Support Center</span>
                     </div>
                     <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight">
-                        Let's Start a <br>
-                        <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-500">Conversation</span>
+                        <span data-i18n="contact.main_title_start">Let's Start a</span> <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-blue-500"
+                            data-i18n="contact.main_title_end">Conversation</span>
                     </h1>
-                    <p class="text-gray-400 text-lg leading-relaxed max-w-lg">
+                    <p class="text-gray-400 text-lg leading-relaxed max-w-lg" data-i18n="contact.main_desc">
                         Have a technical question? Want to migrate your server to us? Or maybe just want to say hi?
                         Our team is ready to help you deploy your next big project.
                     </p>
@@ -161,8 +186,11 @@
                             <i class="fab fa-discord"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">Join Discord</h3>
-                            <p class="text-gray-400 text-sm mb-1">Get instant community support</p>
+                            <h3 class="text-xl font-bold text-white"><span data-i18n="contact.discord_card.title">Join
+                                    Discord</span></h3>
+                            <p class="text-gray-400 text-sm mb-1" data-i18n="contact.discord_card.desc">Get instant
+                                community
+                                support</p>
                             <a href="#" class="text-brand-accent text-sm font-bold hover:underline">dc.fnetic.pl <i
                                     class="fas fa-arrow-right ml-1"></i></a>
                         </div>
@@ -175,8 +203,10 @@
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div>
-                            <h3 class="text-xl font-bold text-white">Email Us</h3>
-                            <p class="text-gray-400 text-sm mb-1">For business inquiries</p>
+                            <h3 class="text-xl font-bold text-white" data-i18n="contact.email_card.title">Email Us</h3>
+                            <p class="text-gray-400 text-sm mb-1" data-i18n="contact.email_card.desc">For business
+                                inquiries
+                            </p>
                             <a href="mailto:contact@fnetic.pl"
                                 class="text-brand-accent text-sm font-bold hover:underline">contact@fnetic.pl <i
                                     class="fas fa-arrow-right ml-1"></i></a>
@@ -195,43 +225,50 @@
                     class="absolute top-0 right-0 w-64 h-64 bg-brand-accent/10 blur-[80px] rounded-full -z-10 pointer-events-none">
                 </div>
 
-                <h2 class="text-2xl font-bold mb-6 font-tech">Send a Message</h2>
+                <h2 class="text-2xl font-bold mb-6 font-tech" data-i18n="contact.form.title">Send a Message</h2>
 
                 <form action="contact.php" method="POST" class="space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-400 mb-2">Your Name</label>
+                        <label for="name" class="block text-sm font-medium text-gray-400 mb-2"
+                            data-i18n="contact.form.name">Your Name</label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"><i
                                     class="fas fa-user"></i></span>
                             <input type="text" id="name" name="name" required placeholder="John Doe"
+                                data-i18n="contact.form.name_placeholder"
                                 class="w-full pl-12 pr-4 py-4 rounded-xl bg-[#020617]/50 border border-white/10 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-600">
                         </div>
                     </div>
 
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2">Email Address</label>
+                        <label for="email" class="block text-sm font-medium text-gray-400 mb-2"
+                            data-i18n="contact.form.email">Email Address</label>
                         <div class="relative">
                             <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"><i
                                     class="fas fa-at"></i></span>
                             <input type="email" id="email" name="email" required placeholder="john@example.com"
+                                data-i18n="contact.form.email_placeholder"
                                 class="w-full pl-12 pr-4 py-4 rounded-xl bg-[#020617]/50 border border-white/10 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-600">
                         </div>
                     </div>
 
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-400 mb-2">Message</label>
+                        <label for="message" class="block text-sm font-medium text-gray-400 mb-2"
+                            data-i18n="contact.form.message">Message</label>
                         <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"
+                            data-i18n="contact.form.message_placeholder"
                             class="w-full px-4 py-4 rounded-xl bg-[#020617]/50 border border-white/10 text-white focus:outline-none focus:border-brand-accent/50 focus:ring-1 focus:ring-brand-accent/50 transition-all placeholder-gray-600 resize-none"></textarea>
                     </div>
 
                     <button type="submit"
                         class="w-full py-4 bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold rounded-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] transition-all duration-300 transform hover:-translate-y-1 flex items-center justify-center gap-2">
-                        <span>Send Message</span> <i class="fas fa-paper-plane"></i>
+                        <span data-i18n="contact.form.submit">Send Message</span> <i class="fas fa-paper-plane"></i>
                     </button>
 
                     <p class="text-xs text-gray-500 text-center mt-4">
-                        By sending this form you agree to our <a href="#"
-                            class="text-brand-accent hover:underline">Privacy Policy</a>.
+                        <span data-i18n="contact.form.privacy_text">By sending this form you agree to our</span> <a
+                            href="#" class="text-brand-accent hover:underline"
+                            data-i18n="contact.form.privacy_link">Privacy Policy</a>.
                     </p>
                 </form>
             </div>
@@ -246,7 +283,7 @@
                     <div class="flex items-center gap-2 font-tech text-xl font-bold text-white">
                         <img src="../../public/img/fneticlogo.png" class="h-6 w-auto" alt="FNetic Logo"> FNetic
                     </div>
-                    <p class="text-gray-400 leading-relaxed">
+                    <p class="text-gray-400 leading-relaxed" data-i18n="footer.desc">
                         Building the future of tech. Reliable software, scalable cloud infrastructure, and
                         uncompromising security.
                     </p>
@@ -263,34 +300,44 @@
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Menu</h4>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.menu">Menu</h4>
                     <ul class="space-y-3 text-gray-400">
-                        <li><a href="#home" class="hover:text-brand-accent transition-colors">Home</a></li>
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Services</a></li>
-                        <li><a href="#process" class="hover:text-brand-accent transition-colors">Engagement Models</a>
+                        <li><a href="#home" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.home">Home</a></li>
+                        <li><a href="#services" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.services">Services</a></li>
+                        <li><a href="#process" class="hover:text-brand-accent transition-colors"
+                                data-i18n="engagement.title">Engagement Models</a>
                         </li>
-                        <li><a href="/src/pages/contact.html"
-                                class="hover:text-brand-accent transition-colors">Contact</a></li>
+                        <li><a href="/src/pages/contact.html" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Legal & Client</h4>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.legal">Legal & Client</h4>
                     <ul class="space-y-3 text-gray-400">
                         <li>
                             <a href="https://ptero.fnetic.pl" target="_blank"
                                 class="flex items-center gap-2 hover:text-brand-accent transition-colors text-white font-medium">
-                                <i class="fas fa-gamepad text-brand-accent"></i> Game Panel
+                                <i class="fas fa-gamepad text-brand-accent"></i> <span
+                                    data-i18n="footer.game_panel">Game Panel</span>
                             </a>
                         </li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">SLA Agreement</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.privacy">Privacy
+                                Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.terms">Terms of
+                                Service</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.sla">SLA
+                                Agreement</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Company Details
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.company">Company Details
                     </h4>
                     <ul class="space-y-4 text-gray-400">
 
@@ -317,6 +364,6 @@
     </footer>
     <script src="../js/main.js"></script>
 
-</body>
+    </body>
 
 </html>

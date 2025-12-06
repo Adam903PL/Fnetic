@@ -23,7 +23,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/i18next@23.2.3/i18next.min.js"></script>
+    <script
+        src="https://unpkg.com/i18next-browser-languagedetector@7.1.0/i18nextBrowserLanguageDetector.min.js"></script>
     <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+
+    <!-- Load Locales -->
+    <script src="../locales/en.js"></script>
+    <script src="../locales/pl.js"></script>
+    <script src="../locales/de.js"></script>
+
+    <script src="../js/i18n.js"></script>
 
     <link rel="stylesheet" href="../css/main.css">
     <script src="../../tailwind.js"></script>
@@ -52,25 +62,41 @@
             </a>
 
             <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
-                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2">Home</a>
-                <a href="index.html#about"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">About</a>
-                <a href="index.html#services"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Services</a>
-                <a href="contact.html"
-                    class="hover:text-brand-accent transition-colors flex items-center gap-2">Contact</a>
+                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.home">Home</a>
+                <a href="index.html#about" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.about">About</a>
+                <a href="index.html#services" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.services">Services</a>
+                <a href="contact.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.contact">Contact</a>
             </nav>
 
             <div class="hidden md:flex items-center gap-6">
                 <a href="https://cloud.fnetic.pl" target="_blank"
                     class="text-gray-300 hover:text-white transition-colors text-sm font-bold flex items-center gap-2">
-                    <i class="fas fa-cloud"></i> Cloud Panel
+                    <i class="fas fa-cloud"></i> <span data-i18n="nav.cloud_panel">Cloud Panel</span>
                 </a>
+
+                <!-- Language Switcher Desktop -->
+                <div class="flex items-center gap-2 ml-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-sm font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de">DE</button>
+                </div>
 
                 <a href="contact.html" class="group">
                     <button
                         class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
-                        Start Project <i
+                        <span data-i18n="nav.start_project">Start Project</span> <i
                             class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </a>
@@ -99,6 +125,20 @@
             </nav>
 
             <div class="flex flex-col items-center gap-4 mt-4 w-full px-10">
+                <!-- Language Switcher Mobile -->
+                <div class="flex items-center gap-4 mb-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-lg font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de">DE</button>
+                </div>
                 <a href="https://cloud.fnetic.pl" target="_blank"
                     class="text-gray-300 hover:text-white text-lg font-bold flex items-center gap-2">
                     <i class="fas fa-cloud"></i> Cloud Panel
@@ -126,26 +166,30 @@
                 <div
                     class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-accent/5 border border-brand-accent/20 text-brand-accent text-sm font-bold mb-6 backdrop-blur-sm">
                     <span class="w-2 h-2 bg-brand-accent rounded-full animate-pulse shadow-[0_0_10px_#06b6d4]"></span>
-                    DevOps-First Software House
+                    <span data-i18n="hero.badge">DevOps-First Software House</span>
                 </div>
                 <h1 class="text-4xl sm:text-6xl md:text-8xl font-black leading-tight mb-8 drop-shadow-2xl">
-                    Build. Scale. <br>
+                    <span data-i18n="hero.title_start">Build. Scale.</span> <br>
                     <span
-                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-blue-400 to-brand-purple">Secure.</span>
+                        class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-blue-400 to-brand-purple"
+                        data-i18n="hero.title_end">Secure.</span>
                 </h1>
-                <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4 font-light">
+                <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed px-4 font-light"
+                    data-i18n="hero.subtitle">
                     We deliver high-performance software solutions, automated cloud infrastructure, and battle-tested
                     security strategies for modern enterprises.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
                     <a href="#services"
                         class="group w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold rounded-xl hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1">
-                        View Services <i class="fas fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                        <span data-i18n="hero.view_services">View Services</span> <i
+                            class="fas fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </a>
                 </div>
 
                 <div class="mt-16 pt-8 border-t border-white/5" data-aos="fade-in" data-aos-delay="500">
-                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-6">Powered by modern stack</p>
+                    <p class="text-sm text-gray-500 uppercase tracking-widest mb-6" data-i18n="hero.powered_by">Powered
+                        by modern stack</p>
                     <div
                         class="flex flex-wrap justify-center items-center gap-8 md:gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
                         <i class="fab fa-aws text-4xl hover:text-[#FF9900] transition-colors"></i>
@@ -163,9 +207,10 @@
     <section id="services" class="py-32 px-6 relative bg-transparent">
         <div class="max-w-7xl mx-auto">
             <div class="mb-16 text-center" data-aos="fade-up">
-                <h2 class="text-3xl md:text-5xl font-black mb-6 font-tech">Our Core <span
-                        class="text-brand-accent">Competencies</span></h2>
-                <p class="text-gray-400 max-w-2xl mx-auto">Comprehensive digital solutions. From code to cloud, we
+                <h2 class="text-3xl md:text-5xl font-black mb-6 font-tech"><span data-i18n="services.title">Our Core
+                        Competencies</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="services.subtitle">Comprehensive digital
+                    solutions. From code to cloud, we
                     handle the complexity.</p>
             </div>
 
@@ -176,18 +221,19 @@
                             class="w-14 h-14 bg-brand-accent/10 rounded-xl flex items-center justify-center text-brand-accent text-2xl mb-6 border border-brand-accent/20 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-laptop-code"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4 font-tech">Custom Software Dev</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-4 font-tech" data-i18n="services.dev.title">Custom
+                            Software Dev</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="services.dev.desc">
                             Tailor-made backend and frontend applications. We build scalable microservices, robust APIs,
                             and interactive web platforms using Node.js, Go, and React.
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mt-4">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> High-Load
-                                Systems</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> API
-                                Integration</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> Legacy
-                                Modernization</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                    data-i18n="services.dev.item1">High-Load Systems</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                    data-i18n="services.dev.item2">API Integration</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                    data-i18n="services.dev.item3">Legacy Modernization</span></li>
                         </ul>
                     </div>
                 </div>
@@ -198,18 +244,19 @@
                             class="w-14 h-14 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400 text-2xl mb-6 border border-blue-500/20 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-cloud-upload-alt"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4 font-tech">DevOps & Cloud</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-4 font-tech" data-i18n="services.ops.title">DevOps &
+                            Cloud</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="services.ops.desc">
                             Cloud infrastructure is our playground. We design CI/CD pipelines, manage Kubernetes
                             clusters, and optimize your AWS/Azure costs.
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mt-4">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Kubernetes &
-                                Docker</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> CI/CD
-                                Automation</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> 24/7
-                                Monitoring</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                    data-i18n="services.ops.item1">Kubernetes & Docker</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                    data-i18n="services.ops.item2">CI/CD Automation</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                    data-i18n="services.ops.item3">24/7 Monitoring</span></li>
                         </ul>
                     </div>
                 </div>
@@ -220,18 +267,19 @@
                             class="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 text-2xl mb-6 border border-purple-500/20 group-hover:scale-110 transition-transform duration-300">
                             <i class="fas fa-user-shield"></i>
                         </div>
-                        <h3 class="text-xl font-bold text-white mb-4 font-tech">Cybersecurity</h3>
-                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                        <h3 class="text-xl font-bold text-white mb-4 font-tech" data-i18n="services.sec.title">
+                            Cybersecurity</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6 flex-grow" data-i18n="services.sec.desc">
                             Security isn't an afterthought. We implement DevSecOps practices, conduct penetration
                             testing, and harden your infrastructure.
                         </p>
                         <ul class="text-sm text-gray-500 space-y-2 mt-4">
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Pentesting
-                                & Audits</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Compliance
-                                (GDPR/ISO)</li>
-                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Incident
-                                Response</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                    data-i18n="services.sec.item1">Pentesting & Audits</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                    data-i18n="services.sec.item2">Compliance (GDPR/ISO)</span></li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                    data-i18n="services.sec.item3">Incident Response</span></li>
                         </ul>
                     </div>
                 </div>
@@ -244,10 +292,11 @@
             <div data-aos="fade-right">
                 <div
                     class="inline-block px-3 py-1 mb-4 rounded bg-blue-500/10 text-blue-400 text-xs font-bold font-mono border border-blue-500/20">
-                    > AUTOMATION_FIRST
+                    <span data-i18n="automation.tag">> AUTOMATION_FIRST</span>
                 </div>
-                <h2 class="text-4xl font-bold font-tech mb-6">Automating Your <br> Success</h2>
-                <p class="text-gray-400 mb-8 leading-relaxed">
+                <h2 class="text-4xl font-bold font-tech mb-6" data-i18n="automation.title">Automating Your <br> Success
+                </h2>
+                <p class="text-gray-400 mb-8 leading-relaxed" data-i18n="automation.desc">
                     We don't just write code; we build factories that produce code. By implementing advanced CI/CD
                     pipelines and Infrastructure as Code, we ensure your deployments are boringly reliable and
                     incredibly fast.
@@ -255,12 +304,12 @@
                 <div class="flex gap-4">
                     <div class="flex flex-col gap-2">
                         <span class="text-3xl font-bold text-white">99.9%</span>
-                        <span class="text-xs text-gray-500 uppercase">Uptime SLA</span>
+                        <span class="text-xs text-gray-500 uppercase" data-i18n="automation.uptime">Uptime SLA</span>
                     </div>
                     <div class="w-px bg-white/10 h-12"></div>
                     <div class="flex flex-col gap-2">
                         <span class="text-3xl font-bold text-brand-accent">10x</span>
-                        <span class="text-xs text-gray-500 uppercase">Faster Deploy</span>
+                        <span class="text-xs text-gray-500 uppercase" data-i18n="automation.faster">Faster Deploy</span>
                     </div>
                 </div>
             </div>
@@ -288,28 +337,31 @@
     <section id="process" class="py-24 px-6 relative bg-transparent">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16" data-aos="fade-up">
-                <h2 class="text-4xl md:text-5xl font-bold font-tech mb-4">Engagement <span
-                        class="text-blue-500">Models</span></h2>
-                <p class="text-gray-400">Flexible cooperation suited to your business stage.</p>
+                <h2 class="text-4xl md:text-5xl font-bold font-tech mb-4"><span data-i18n="engagement.title">Engagement
+                        Models</span></h2>
+                <p class="text-gray-400" data-i18n="engagement.subtitle">Flexible cooperation suited to your business
+                    stage.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8 items-stretch">
                 <div class="magic-card h-full" data-aos="fade-up" data-aos-delay="0">
                     <div class="card-inner p-8 flex flex-col h-full">
-                        <div class="text-brand-accent text-sm font-bold uppercase mb-2">Startup / MVP</div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Rapid Launch</h3>
-                        <p class="text-sm text-gray-400 mb-8 leading-relaxed">
+                        <div class="text-brand-accent text-sm font-bold uppercase mb-2"
+                            data-i18n="engagement.startup.badge">Startup / MVP</div>
+                        <h3 class="text-2xl font-bold text-white mb-4" data-i18n="engagement.startup.title">Rapid Launch
+                        </h3>
+                        <p class="text-sm text-gray-400 mb-8 leading-relaxed" data-i18n="engagement.startup.desc">
                             Ideal for validating ideas. We build a functional MVP focusing on core features and
                             time-to-market.
                         </p>
                         <div class="mt-auto border-t border-white/10 pt-6">
                             <ul class="space-y-3 text-sm text-gray-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> 3-6
-                                    Weeks Delivery</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> Core
-                                    Functionality</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i>
-                                    Scalable Architecture</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                        data-i18n="engagement.startup.item1">3-6 Weeks Delivery</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                        data-i18n="engagement.startup.item2">Core Functionality</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-brand-accent"></i> <span
+                                        data-i18n="engagement.startup.item3">Scalable Architecture</span></li>
                             </ul>
                         </div>
                     </div>
@@ -319,23 +371,25 @@
                     data-aos="fade-up" data-aos-delay="150">
                     <div
                         class="card-inner p-8 flex flex-col h-full bg-[#0f172a] z-10 relative border-t-2 border-blue-500/20">
-                        <div
-                            class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider">
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg uppercase tracking-wider"
+                            data-i18n="engagement.scale.popular">
                             Most Popular</div>
-                        <div class="text-blue-400 text-sm font-bold uppercase mb-2">Growth / Scale</div>
-                        <h3 class="text-2xl font-bold text-white mb-4">Team Extension</h3>
-                        <p class="text-sm text-gray-400 mb-8 leading-relaxed">
+                        <div class="text-blue-400 text-sm font-bold uppercase mb-2" data-i18n="engagement.scale.badge">
+                            Growth / Scale</div>
+                        <h3 class="text-2xl font-bold text-white mb-4" data-i18n="engagement.scale.title">Team Extension
+                        </h3>
+                        <p class="text-sm text-gray-400 mb-8 leading-relaxed" data-i18n="engagement.scale.desc">
                             Augment your existing IT team with our DevOps engineers and backend developers to speed up
                             delivery.
                         </p>
                         <div class="mt-auto border-t border-white/10 pt-6">
                             <ul class="space-y-3 text-sm text-gray-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Dedicated
-                                    Experts</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Knowledge
-                                    Transfer</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> Agile
-                                    Methodology</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                        data-i18n="engagement.scale.item1">Dedicated Experts</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                        data-i18n="engagement.scale.item2">Knowledge Transfer</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-blue-400"></i> <span
+                                        data-i18n="engagement.scale.item3">Agile Methodology</span></li>
                             </ul>
                         </div>
                     </div>
@@ -343,20 +397,21 @@
 
                 <div class="magic-card h-full" data-aos="fade-up" data-aos-delay="300">
                     <div class="card-inner p-8 flex flex-col h-full">
-                        <div class="text-purple-400 text-sm font-bold uppercase mb-2">Corporate</div>
-                        <h3 class="text-2xl font-bold text-white mb-4">End-to-End</h3>
-                        <p class="text-sm text-gray-400 mb-8 leading-relaxed">
+                        <div class="text-purple-400 text-sm font-bold uppercase mb-2" data-i18n="engagement.corp.badge">
+                            Corporate</div>
+                        <h3 class="text-2xl font-bold text-white mb-4" data-i18n="engagement.corp.title">End-to-End</h3>
+                        <p class="text-sm text-gray-400 mb-8 leading-relaxed" data-i18n="engagement.corp.desc">
                             Full-cycle development. We take ownership of the project from requirements gathering to
                             deployment.
                         </p>
                         <div class="mt-auto border-t border-white/10 pt-6">
                             <ul class="space-y-3 text-sm text-gray-300">
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> Project
-                                    Management</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> QA &
-                                    Security Audits</li>
-                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i>
-                                    Long-term SLA</li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                        data-i18n="engagement.corp.item1">Project Management</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                        data-i18n="engagement.corp.item2">QA & Security Audits</span></li>
+                                <li class="flex items-center gap-2"><i class="fas fa-check text-purple-400"></i> <span
+                                        data-i18n="engagement.corp.item3">Long-term SLA</span></li>
                             </ul>
                         </div>
                     </div>
@@ -369,9 +424,10 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-6" data-aos="fade-up">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-black font-tech mb-2">Measurable <span
-                            class="text-brand-accent">Impact</span></h2>
-                    <p class="text-gray-400 max-w-md">Numbers don't lie. Here represents our track record, dedication,
+                    <h2 class="text-3xl md:text-4xl font-black font-tech mb-2"><span data-i18n="stats.title">Measurable
+                            Impact</span></h2>
+                    <p class="text-gray-400 max-w-md" data-i18n="stats.desc">Numbers don't lie. Here represents our
+                        track record, dedication,
                         and client trust.</p>
                 </div>
                 <div
@@ -391,8 +447,8 @@
                         class="text-5xl md:text-6xl font-black text-white mb-2 font-tech group-hover:text-brand-accent transition-colors duration-300">
                         <span class="counter" data-target="50">0</span>+
                     </div>
-                    <div
-                        class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors">
+                    <div class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors"
+                        data-i18n="stats.projects">
                         Projects Delivered</div>
                     <i
                         class="fas fa-check-circle absolute -bottom-4 -right-4 text-8xl text-white/[0.03] group-hover:scale-110 transition-transform duration-500 pointer-events-none"></i>
@@ -407,8 +463,8 @@
                         class="text-5xl md:text-6xl font-black text-white mb-2 font-tech group-hover:text-brand-accent transition-colors duration-300">
                         <span class="counter" data-target="12">0</span>
                     </div>
-                    <div
-                        class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors">
+                    <div class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors"
+                        data-i18n="stats.experts">
                         Experts on Board</div>
                     <i
                         class="fas fa-users absolute -bottom-4 -right-4 text-8xl text-white/[0.03] group-hover:scale-110 transition-transform duration-500 pointer-events-none"></i>
@@ -423,8 +479,8 @@
                         class="text-5xl md:text-6xl font-black text-white mb-2 font-tech group-hover:text-brand-accent transition-colors duration-300">
                         <span class="counter" data-target="5">0</span>+
                     </div>
-                    <div
-                        class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors">
+                    <div class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors"
+                        data-i18n="stats.experience">
                         Years Experience</div>
                     <i
                         class="fas fa-history absolute -bottom-4 -right-4 text-8xl text-white/[0.03] group-hover:scale-110 transition-transform duration-500 pointer-events-none"></i>
@@ -439,8 +495,8 @@
                         class="text-5xl md:text-6xl font-black text-white mb-2 font-tech group-hover:text-brand-accent transition-colors duration-300">
                         <span class="counter" data-target="100">0</span>%
                     </div>
-                    <div
-                        class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors">
+                    <div class="text-gray-400 text-xs uppercase font-bold tracking-widest group-hover:text-white transition-colors"
+                        data-i18n="stats.retention">
                         Client Retention</div>
                     <i
                         class="fas fa-handshake absolute -bottom-4 -right-4 text-8xl text-white/[0.03] group-hover:scale-110 transition-transform duration-500 pointer-events-none"></i>
@@ -500,12 +556,15 @@
                                     class="flex items-center justify-center md:justify-start gap-3 group">
                                     <h2
                                         class="text-3xl md:text-4xl font-bold text-white font-tech group-hover:text-brand-accent transition-colors">
-                                        Join Our <span class="text-blue-300">Discord</span></h2>
+                                        <span data-i18n="discord.title">Join Our Discord</span>
+                                    </h2>
                                 </a>
                             </div>
-                            <p class="text-xl text-gray-200 mb-2">Connect with our community of gamers and developers
+                            <p class="text-xl text-gray-200 mb-2" data-i18n="discord.subtitle">Connect with our
+                                community of gamers and developers
                             </p>
-                            <p class="text-gray-400">Get instant support, share experiences, and stay updated with the
+                            <p class="text-gray-400" data-i18n="discord.desc">Get instant support, share experiences,
+                                and stay updated with the
                                 latest news</p>
                         </div>
                         <div class="flex-shrink-0">
@@ -523,13 +582,16 @@
 
     <section class="py-32 px-6 relative overflow-hidden bg-transparent">
         <div class="max-w-4xl mx-auto text-center relative z-10" data-aos="fade-up">
-            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight font-tech">Ready to <span
-                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-blue-500 to-purple-600">Level
-                    Up</span>?</h2>
+            <h2 class="text-5xl md:text-7xl font-black mb-6 leading-tight font-tech">
+                <span data-i18n="cta.title_start">Ready to</span> <span
+                    class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-blue-500 to-purple-600"
+                    data-i18n="cta.title_end">Level Up</span>?
+            </h2>
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
                 <a href="/src/pages/contact.html"
                     class="px-10 py-5 bg-brand-accent text-black font-bold rounded-lg hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center gap-3 text-lg group">
-                    Estimate Project <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    <span data-i18n="cta.button">Estimate Project</span> <i
+                        class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                 </a>
             </div>
         </div>
@@ -543,7 +605,7 @@
                     <div class="flex items-center gap-2 font-tech text-xl font-bold text-white">
                         <img src="../../public/img/fneticlogo.png" class="h-6 w-auto" alt="FNetic Logo"> FNetic
                     </div>
-                    <p class="text-gray-400 leading-relaxed">
+                    <p class="text-gray-400 leading-relaxed" data-i18n="footer.desc">
                         Building the future of tech. Reliable software, scalable cloud infrastructure, and
                         uncompromising security.
                     </p>
@@ -560,34 +622,44 @@
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Menu</h4>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.menu">Menu</h4>
                     <ul class="space-y-3 text-gray-400">
-                        <li><a href="#home" class="hover:text-brand-accent transition-colors">Home</a></li>
-                        <li><a href="#services" class="hover:text-brand-accent transition-colors">Services</a></li>
-                        <li><a href="#process" class="hover:text-brand-accent transition-colors">Engagement Models</a>
+                        <li><a href="#home" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.home">Home</a></li>
+                        <li><a href="#services" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.services">Services</a></li>
+                        <li><a href="#process" class="hover:text-brand-accent transition-colors"
+                                data-i18n="engagement.title">Engagement Models</a>
                         </li>
-                        <li><a href="/src/pages/contact.html"
-                                class="hover:text-brand-accent transition-colors">Contact</a></li>
+                        <li><a href="/src/pages/contact.html" class="hover:text-brand-accent transition-colors"
+                                data-i18n="nav.contact">Contact</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Legal & Client</h4>
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.legal">Legal & Client</h4>
                     <ul class="space-y-3 text-gray-400">
                         <li>
                             <a href="https://ptero.fnetic.pl" target="_blank"
                                 class="flex items-center gap-2 hover:text-brand-accent transition-colors text-white font-medium">
-                                <i class="fas fa-gamepad text-brand-accent"></i> Game Panel
+                                <i class="fas fa-gamepad text-brand-accent"></i> <span
+                                    data-i18n="footer.game_panel">Game Panel</span>
                             </a>
                         </li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-gray-200 transition-colors">SLA Agreement</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.privacy">Privacy
+                                Policy</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.terms">Terms of
+                                Service</a></li>
+                        <li><a href="#" class="hover:text-gray-200 transition-colors" data-i18n="footer.sla">SLA
+                                Agreement</a></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs">Company Details
+                    <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                        data-i18n="footer.company">Company Details
                     </h4>
                     <ul class="space-y-4 text-gray-400">
 
