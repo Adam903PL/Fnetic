@@ -145,6 +145,72 @@ window.locales.de = {
                 "privacy_text": "Mit dem Absenden dieses Formulars stimmen Sie unserer",
                 "privacy_link": "Datenschutzrichtlinie"
             }
+        },
+        "recap": {
+            "system_ready": "● SYSTEM BEREIT",
+            "log_title": "2025 LOGBUCH",
+            "intro_desc": "Initiiere Hypersprung-Sequenz durch die Jahresarchive.",
+            "engage_btn": "HYPERANTRIEB AKTIVIEREN",
+            "status_label": "STATUS:",
+            "velocity_stable": "STABIL",
+            "event_label": "EREIGNIS:",
+            "next_jump": "NÄCHSTER SPRUNG",
+            "thank_you_title": "DANKE FÜR",
+            "thank_you_desc": "GEMEINSAM ZUKUNFT BAUEN",
+            "mission_accomplished": "● MISSION ERFÜLLT",
+            "summary_title": "ZUSAMMENFASSUNG 2025",
+            "summary_desc": "Das Jahr 2025 war ein Meilenstein für FNetic, fokussiert auf den Aufbau starker Fundamente, die Entwicklung zuverlässiger Infrastruktur und die stetige Erweiterung unserer Dienste.",
+            "numbers": {
+                "clients": "Bediente Kunden",
+                "dedication": "Engagement",
+                "uptime": "Support-Verfügbarkeit",
+                "scale": "Zukunftsskala"
+            },
+            "outlook": {
+                "title": "Ausblick auf 2026",
+                "desc": "Das Jahr 2026 wird sich auf weitere Innovationen, neue Projekte, kontinuierliche Infrastrukturverbesserungen und die konsequente Steigerung der Servicequalität auf allen Fnetic-Plattformen konzentrieren.",
+                "quote": "\"Zu Beginn des Jahres 2026 wünschen wir unseren Kunden, Partnern und Teammitgliedern weiterhin viel Erfolg, ehrgeizige Ziele und stetiges Wachstum in beruflichen und privaten Belangen.<br>Danke, dass Sie 2025 Teil von Fnetic waren.\"",
+                "team": "— FNetic Team"
+            },
+            "back_to_top": "ZURÜCK NACH OBEN",
+            "events": [
+                {
+                    "date": "2025.01.01",
+                    "title": "Projekt Genesis",
+                    "desc": "Offizieller Start. Planung, Richtungsbestimmung und Erstellung der visuellen Identität. Aufbau des Ökosystem-Fundaments.",
+                    "icon": "fa-flag"
+                },
+                {
+                    "date": "2025.06.01",
+                    "title": "Ökosystem-Erweiterung",
+                    "desc": "Preise finalisiert, Service-Portfolio erweitert. Kontinuierliche Verbesserungen und Systemoptimierungen.",
+                    "icon": "fa-layer-group"
+                },
+                {
+                    "date": "2025.08.15",
+                    "title": "FNetic Cloud Start",
+                    "desc": "Offizieller Start der FNetic Cloud: Gameserver, VPS und Webhosting. Erste Kundenbestellungen erfüllt.",
+                    "icon": "fa-cloud"
+                },
+                {
+                    "date": "2025.10.27",
+                    "title": "Kostenlose Stufe Freigeschaltet",
+                    "desc": "Einführung kostenloser 24/7-Server für alle Benutzer.",
+                    "icon": "fa-gift"
+                },
+                {
+                    "date": "2025.12.01",
+                    "title": "Infrastruktur-Upgrade",
+                    "desc": "Einsatz von Ryzen 9 9950X Nodes, täglichen Backup-Systemen und Start der neuen fnetic.pl Webseite.",
+                    "icon": "fa-microchip"
+                },
+                {
+                    "date": "2025.12.31",
+                    "title": "Zusammenfassung 2025",
+                    "desc": "Über 150 bediente Kunden, Teamerweiterung und ein solides Fundament für 2026 aufgebaut.",
+                    "icon": "fa-chart-line"
+                }
+            ]
         }
     }
 };

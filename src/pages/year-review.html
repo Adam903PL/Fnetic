@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en" class="bg-[#020617] overflow-x-hidden">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>2025 Hyperlog | FNeticCloud</title>
+    <meta name="description" content="FNeticCloud 2025 Year in Review - System Initialization Log." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        /* Ukrycie scrollbara w menu mobilnym ale zachowanie funkcji przewijania */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* Zapobieganie przesuwaniu strony na boki na mobile */
+        body {
+            overflow-x: hidden;
+            width: 100vw;
+        }
+    </style>
+
+    <link rel="stylesheet" href="../css/min/styles.min.css">
+    <script src="../js/splash-cursor.js"></script>
+    <script type="module">
+        import { Renderer, Program, Triangle, Mesh } from 'https://unpkg.com/ogl';
+        window.ogl = { Renderer, Program, Triangle, Mesh };
+        window.dispatchEvent(new Event('ogl-ready'));
+    </script>
+
+    <link rel="stylesheet" href="../css/year-review.css">
+</head>
+
+<body class="text-white antialiased">
+
+    <canvas id="warp-canvas"></canvas>
+    <div id="light-rays-container" class="light-rays-container transition-opacity duration-1000"></div>
+    <canvas id="fluid" class="fixed top-0 left-0 w-full h-full z-[1] pointer-events-none"
+        style="display: none;"></canvas>
+
+    <div id="transition-overlay"
+        class="fixed inset-0 bg-white z-[100] pointer-events-none opacity-0 transition-opacity duration-1000"></div>
+
+    <header class="fixed w-full z-50 transition-all duration-300 py-3 px-4 md:py-4 md:px-6 glass border-b-0"
+        id="navbar">
+        <div class="max-w-7xl mx-auto flex items-center justify-between relative flex-nowrap">
+
+            <a href="index.html"
+                class="flex items-center gap-2 md:gap-3 font-tech text-lg md:text-xl font-bold text-white cursor-pointer z-50 whitespace-nowrap">
+                <div class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0">
+                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain"
+                        alt="FNeticCloud Logo" width="40" height="40">
+                </div>
+                <span>FNeticCloud</span>
+            </a>
+
+            <nav class="hidden md:flex gap-8 text-sm font-medium text-gray-300">
+                <a href="index.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.home">Home</a>
+                <a href="index.html#about" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.about">About</a>
+                <a href="index.html#services" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.services">Services</a>
+                <a href="contact.html" class="hover:text-brand-accent transition-colors flex items-center gap-2"
+                    data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-6">
+                <a href="https://cloud.fnetic.pl" target="_blank"
+                    class="text-gray-300 hover:text-white transition-colors text-sm font-bold flex items-center gap-2">
+                    <i class="fas fa-cloud"></i> <span data-i18n="nav.cloud_panel">Cloud Panel</span>
+                </a>
+
+                <!-- Language Switcher Desktop -->
+                <div class="flex items-center gap-2 ml-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-sm font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en" aria-label="Switch to English">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl" aria-label="Switch to Polish">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de" aria-label="Switch to German">DE</button>
+                </div>
+
+
+                <a href="contact.html" class="group">
+                    <button
+                        class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
+                        <span data-i18n="nav.start_project">Start Project</span> <i
+                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"
+                            aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" aria-label="Open mobile menu"
+                class="md:hidden text-white text-2xl focus:outline-none z-[60] relative p-2">
+                <i class="fas fa-bars transition-all duration-300" aria-hidden="true"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-5 h-screen w-full top-0 left-0">
+
+            <div class="flex flex-col items-center gap-2 mb-6">
+                <div class="w-16 h-16 bg-white/5 rounded-full p-2 border border-white/10">
+                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain"
+                        alt="FNeticCloud Logo" loading="lazy" width="64" height="64">
+                </div>
+                <span class="font-tech text-2xl font-bold text-white tracking-widest">FNeticCloud</span>
+            </div>
+
+            <nav class="flex flex-col items-center gap-6 text-xl font-medium text-white">
+                <a href="index.html" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.home">Home</a>
+                <a href="index.html#about" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.about">About</a>
+                <a href="index.html#services" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.services">Services</a>
+                <a href="contact.html" class="mobile-link text-brand-accent font-bold"
+                    data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <div class="flex flex-col items-center gap-4 mt-4 w-full px-10">
+                <!-- Language Switcher Mobile -->
+                <div class="flex items-center gap-4 mb-2">
+                    <button onclick="changeLanguage('en')"
+                        class="lang-btn text-lg font-bold text-brand-accent hover:text-white transition-colors"
+                        data-lang="en">EN</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('pl')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="pl">PL</button>
+                    <span class="text-gray-600">|</span>
+                    <button onclick="changeLanguage('de')"
+                        class="lang-btn text-lg font-bold text-gray-300 hover:text-white transition-colors"
+                        data-lang="de">DE</button>
+                </div>
+                <a href="https://cloud.fnetic.pl" target="_blank"
+                    class="text-gray-300 hover:text-white text-lg font-bold flex items-center gap-2">
+                    <i class="fas fa-cloud"></i> Cloud Panel
+                </a>
+
+                <a href="contact.html" class="group">
+                    <button
+                        class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
+                        Start Project <i class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"
+                            aria-hidden="true"></i>
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div id="ui-layer">
+
+        <div class="flex-grow flex items-center justify-center">
+
+            <div id="intro-screen" class="text-center interactive z-20 transition-all duration-700 w-full px-4">
+                <div
+                    class="inline-block border border-cyan-500/30 px-4 py-1 rounded bg-cyan-900/20 mb-6 backdrop-blur-md">
+                    <span class="font-mono-tech text-cyan-400 animate-pulse text-xs md:text-sm">● SYSTEM READY</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl lg:text-9xl font-black font-tech mb-6 glitch tracking-tighter break-words"
+                    data-text="2025 LOG">
+                    2025 LOG
+                </h1>
+                <p
+                    class="text-gray-400 font-mono-tech text-xs md:text-sm lg:text-lg mb-8 md:mb-12 max-w-lg mx-auto leading-relaxed">
+                    Initiating hyper-jump sequence through the yearly archives.
+                </p>
+                <button onclick="startSequence()"
+                    class="group relative px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold font-tech text-lg md:text-xl clip-path-polygon transition-all shadow-[0_0_30px_rgba(8,145,178,0.5)] active:scale-95">
+                    ENGAGE HYPERDRIVE
+                </button>
+            </div>
+
+            <div id="hud-container" class="hidden flex-col items-center w-full max-w-5xl interactive z-20 px-4 md:px-6">
+                <div class="w-full flex justify-between items-end mb-4 border-b border-white/10 pb-2">
+                    <div class="text-[10px] md:text-xs font-mono-tech text-cyan-500">
+                        <span>STATUS:</span> <span id="velocity-display">STABLE</span>
+                    </div>
+                    <div class="text-[10px] md:text-xs font-mono-tech text-white">
+                        <span>EVENT:</span> <span id="progress-display" class="text-cyan-400">-- / --</span>
+                    </div>
+                </div>
+
+                <div id="event-card"
+                    class="glass-hud w-full p-6 md:p-12 rounded-lg relative overflow-hidden transition-all duration-500 opacity-0 transform scale-95 border border-white/5 bg-[#000]/40 backdrop-blur-md">
+                    <div class="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-cyan-400"></div>
+                    <div class="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-cyan-400"></div>
+                    <div class="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-cyan-400"></div>
+                    <div class="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-cyan-400"></div>
+
+                    <div class="flex flex-col md:flex-row gap-6 md:gap-8 items-center">
+                        <div class="relative shrink-0">
+                            <div
+                                class="w-16 h-16 md:w-24 md:h-24 rounded-full border border-cyan-500/30 flex items-center justify-center bg-cyan-500/5 shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+                                <i id="card-icon" class="fas fa-rocket text-2xl md:text-4xl text-cyan-400"></i>
+                            </div>
+                        </div>
+                        <div class="text-center md:text-left">
+                            <div id="card-date" class="font-mono-tech text-cyan-600 text-xs md:text-sm mb-2">2025.01.15
+                            </div>
+                            <h2 id="card-title"
+                                class="text-2xl md:text-5xl font-bold font-tech text-white mb-2 md:mb-4 uppercase leading-tight">
+                                Genesis Launch</h2>
+                            <p id="card-desc" class="text-gray-300 text-sm md:text-lg leading-relaxed max-w-2xl">
+                                Official launch.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 md:mt-12 flex gap-6">
+                    <button id="next-btn" onclick="nextEvent()"
+                        class="px-6 py-3 md:px-8 bg-white/5 border border-white/20 hover:border-cyan-400 hover:bg-cyan-500/10 text-white font-mono-tech transition-all flex items-center gap-2 group text-sm md:text-base rounded active:bg-white/10">
+                        <span>NEXT JUMP</span> <i
+                            class="fas fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div id="outro-screen"
+                class="hidden absolute inset-0 z-20 flex-col items-center justify-center pointer-events-none px-4">
+                <div id="outro-logo"
+                    class="w-24 h-24 md:w-48 md:h-48 mb-6 md:mb-8 transition-all duration-1000 transform scale-50 opacity-0 flex items-center justify-center">
+                    <img src="../../public/img/fneticlogo.png"
+                        class="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+                        alt="FNetic Logo">
+                </div>
+                <div id="outro-text"
+                    class="text-center transition-all duration-1000 delay-300 transform translate-y-10 opacity-0">
+                    <h2 class="text-3xl md:text-6xl font-black font-tech text-white mb-4 tracking-tight">
+                        THANK YOU FOR <span class="text-cyan-500 block md:inline">2025</span>
+                    </h2>
+                    <p class="text-gray-400 font-mono-tech text-sm md:text-xl tracking-widest">BUILDING THE FUTURE
+                        TOGETHER</p>
+                </div>
+            </div>
+
+            <div id="timeline-container"
+                class="hidden w-full min-h-screen relative z-30 fade-in bg-transparent pointer-events-auto overflow-hidden">
+
+                <div class="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div
+                        class="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-cyan-500/10 rounded-full blur-[120px] animate-pulse">
+                    </div>
+                    <div class="absolute bottom-[-10%] right-[-10%] w-[50vw] h-[50vw] bg-purple-500/10 rounded-full blur-[120px] animate-pulse"
+                        style="animation-duration: 4s; animation-delay: 1s;"></div>
+                </div>
+
+                <div class="max-w-6xl mx-auto px-4 pt-24 md:pt-32 pb-32 relative z-10">
+                    <div class="text-center mb-12 md:mb-16 flex flex-col items-center">
+                        <div
+                            class="inline-block border border-cyan-400/30 px-3 py-1 rounded bg-cyan-400/5 mb-6 backdrop-blur-md">
+                            <span
+                                class="font-mono-tech text-cyan-400 animate-pulse text-[10px] md:text-xs tracking-widest">●
+                                MISSION ACCOMPLISHED</span>
+                        </div>
+                        <h1
+                            class="text-3xl md:text-5xl lg:text-7xl font-black font-tech text-white mb-6 tracking-tight relative block">
+                            2025 SUMMARY
+                        </h1>
+                        <p class="text-gray-400 font-inter text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
+                            The year 2025 was a milestone period for FNetic, focused on building strong foundations.
+                        </p>
+                    </div>
+
+                    <div class="relative mb-32">
+                        <div
+                            class="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-cyan-500/0 via-cyan-500 to-cyan-500/0 transform md:-translate-x-1/2 shadow-[0_0_10px_rgba(6,182,212,0.3)]">
+                        </div>
+                        <div id="timeline-content" class="space-y-16 py-4">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                            class="px-8 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-lg font-tech transition border border-white/10 active:scale-95">
+                            <i class="fas fa-arrow-up mr-2"></i> BACK TO TOP
+                        </button>
+                    </div>
+                </div>
+
+                <footer class="border-t border-white/5 bg-black/80 backdrop-blur-xl py-12 px-6 text-sm">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                            <div class="space-y-4">
+                                <div class="flex items-center gap-2 font-tech text-xl font-bold text-white">
+                                    <img src="../../public/img/fneticlogo.png" loading="lazy" class="h-6 w-auto"
+                                        alt="FNetic Logo" height="24">
+                                    FNetic
+                                </div>
+                                <p class="text-gray-400 leading-relaxed text-xs md:text-sm" data-i18n="footer.desc">
+                                    Building the future of tech. Reliable software, scalable cloud infrastructure, and
+                                    uncompromising security.
+                                </p>
+                                <div class="flex gap-4 pt-2">
+                                    <a href="https://github.com/fneticIT" target="_blank"
+                                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                                        <i class="fab fa-github text-lg" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/fnetic.it/" target="_blank"
+                                        class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
+                                        <i class="fab fa-instagram text-lg" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                                    data-i18n="footer.menu">Menu</h4>
+                                <ul class="space-y-3 text-gray-400">
+                                    <li><a href="#home" class="hover:text-brand-accent transition-colors"
+                                            data-i18n="nav.home">Home</a></li>
+                                    <li><a href="#services" class="hover:text-brand-accent transition-colors"
+                                            data-i18n="nav.services">Services</a></li>
+                                    <li><a href="#process" class="hover:text-brand-accent transition-colors"
+                                            data-i18n="engagement.title">Engagement Models</a></li>
+                                    <li><a href="/src/pages/contact.html"
+                                            class="hover:text-brand-accent transition-colors"
+                                            data-i18n="nav.contact">Contact</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                                    data-i18n="footer.legal">Legal & Client</h4>
+                                <ul class="space-y-3 text-gray-400">
+                                    <li>
+                                        <a href="https://ptero.fnetic.pl" target="_blank"
+                                            class="flex items-center gap-2 hover:text-brand-accent transition-colors text-white font-medium">
+                                            <i class="fas fa-gamepad text-brand-accent"></i> <span
+                                                data-i18n="footer.game_panel">Game Panel</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold font-tech mb-6 uppercase tracking-wider text-xs"
+                                    data-i18n="footer.company">Company Details
+                                </h4>
+                                <ul class="space-y-4 text-gray-400">
+                                    <li>
+                                        <a href="mailto:support@fnetic.pl"
+                                            class="flex items-center gap-2 hover:text-white transition-colors mb-2 break-all">
+                                            <i class="fas fa-envelope text-brand-accent"></i> support@fnetic.pl
+                                        </a>
+                                        <a href="tel:+48729791733"
+                                            class="flex items-center gap-2 hover:text-white transition-colors">
+                                            <i class="fas fa-phone text-brand-accent"></i> +48 729 791 733
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div
+                            class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500 text-center md:text-left">
+                            <div>&copy; 2025 FNetic Solutions. All rights reserved.</div>
+                            <div>Designed & Developed by FNetic Team.</div>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/i18next@23.2.3/i18next.min.js" defer></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@7.1.0/i18nextBrowserLanguageDetector.min.js"
+        defer></script>
+
+    <!-- Load Locales -->
+    <script src="../locales/en.js" defer></script>
+    <script src="../locales/pl.js" defer></script>
+    <script src="../locales/de.js" defer></script>
+
+    <script src="../js/min/i18n.min.js" defer></script>
+
+    <script src="../js/year-review.js" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuBtn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const icon = menuBtn.querySelector('i');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+
+                if (isMenuOpen) {
+                    // Otwieranie
+                    menu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-5');
+                    icon.classList.remove('fa-bars');
+                    icon.classList.add('fa-times');
+                    document.body.style.overflow = 'hidden'; // Zablokuj scrollowanie tła
+                } else {
+                    // Zamykanie
+                    menu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-5');
+                    icon.classList.remove('fa-times');
+                    icon.classList.add('fa-bars');
+                    document.body.style.overflow = ''; // Odblokuj scrollowanie
+                }
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+
+            // Zamykaj menu po kliknięciu w link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (isMenuOpen) toggleMenu();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

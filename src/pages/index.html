@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden">
 
 <head>
     <meta charset="UTF-8" />
@@ -7,36 +7,23 @@
     <meta name="description" content="FNetic - Software Development, DevOps & Cybersecurity Solutions." />
     <title>FNetic - Software & DevOps House</title>
 
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://unpkg.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        media="print" onload="this.media='all'">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" media="(min-width: 768px)">
 
-    <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanta/0.5.24/vanta.net.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/i18next@23.2.3/i18next.min.js"></script>
-    <script
-        src="https://unpkg.com/i18next-browser-languagedetector@7.1.0/i18nextBrowserLanguageDetector.min.js"></script>
-    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 
-    <!-- Load Locales -->
-    <script src="../locales/en.js"></script>
-    <script src="../locales/pl.js"></script>
-    <script src="../locales/de.js"></script>
 
-    <script src="../js/i18n.js"></script>
+    <link rel="stylesheet" href="../css/min/styles.min.css">
 
-    <link rel="stylesheet" href="../css/main.css">
-    <script src="../../tailwind.js"></script>
 
 </head>
 
@@ -56,7 +43,8 @@
             <a href="index.html"
                 class="flex items-center gap-2 md:gap-3 font-tech text-lg md:text-xl font-bold text-white cursor-pointer z-50 whitespace-nowrap">
                 <div class="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center shrink-0">
-                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain" alt="FNeticCloud">
+                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain"
+                        alt="FNeticCloud Logo" width="40" height="40">
                 </div>
                 <span>FNeticCloud</span>
             </a>
@@ -82,46 +70,54 @@
                 <div class="flex items-center gap-2 ml-2">
                     <button onclick="changeLanguage('en')"
                         class="lang-btn text-sm font-bold text-brand-accent hover:text-white transition-colors"
-                        data-lang="en">EN</button>
+                        data-lang="en" aria-label="Switch to English">EN</button>
                     <span class="text-gray-600">|</span>
                     <button onclick="changeLanguage('pl')"
                         class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
-                        data-lang="pl">PL</button>
+                        data-lang="pl" aria-label="Switch to Polish">PL</button>
                     <span class="text-gray-600">|</span>
                     <button onclick="changeLanguage('de')"
                         class="lang-btn text-sm font-bold text-gray-300 hover:text-white transition-colors"
-                        data-lang="de">DE</button>
+                        data-lang="de" aria-label="Switch to German">DE</button>
                 </div>
+
 
                 <a href="contact.html" class="group">
                     <button
                         class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
                         <span data-i18n="nav.start_project">Start Project</span> <i
-                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
+                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"
+                            aria-hidden="true"></i>
                     </button>
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden text-white text-2xl focus:outline-none z-[60] relative p-2">
-                <i class="fas fa-bars transition-all duration-300"></i>
+            <button id="mobile-menu-btn" aria-label="Open mobile menu"
+                class="md:hidden text-white text-2xl focus:outline-none z-[60] relative p-2">
+                <i class="fas fa-bars transition-all duration-300" aria-hidden="true"></i>
             </button>
         </div>
 
         <div id="mobile-menu"
-            class="fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-5 h-screen w-screen top-0 left-0">
+            class="fixed inset-0 bg-[#020617] z-50 flex flex-col items-center justify-center gap-6 opacity-0 pointer-events-none transition-all duration-300 transform -translate-y-5 h-screen w-full top-0 left-0">
 
             <div class="flex flex-col items-center gap-2 mb-6">
                 <div class="w-16 h-16 bg-white/5 rounded-full p-2 border border-white/10">
-                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain" alt="FNeticCloud">
+                    <img src="../../public/img/fneticlogo.png" class="w-full h-full object-contain"
+                        alt="FNeticCloud Logo" loading="lazy" width="64" height="64">
                 </div>
                 <span class="font-tech text-2xl font-bold text-white tracking-widest">FNeticCloud</span>
             </div>
 
             <nav class="flex flex-col items-center gap-6 text-xl font-medium text-white">
-                <a href="index.html" class="mobile-link hover:text-brand-accent transition-colors">Home</a>
-                <a href="index.html#about" class="mobile-link hover:text-brand-accent transition-colors">About</a>
-                <a href="index.html#services" class="mobile-link hover:text-brand-accent transition-colors">Services</a>
-                <a href="contact.html" class="mobile-link text-brand-accent font-bold">Contact</a>
+                <a href="index.html" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.home">Home</a>
+                <a href="index.html#about" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.about">About</a>
+                <a href="index.html#services" class="mobile-link hover:text-brand-accent transition-colors"
+                    data-i18n="nav.services">Services</a>
+                <a href="contact.html" class="mobile-link text-brand-accent font-bold"
+                    data-i18n="nav.contact">Contact</a>
             </nav>
 
             <div class="flex flex-col items-center gap-4 mt-4 w-full px-10">
@@ -147,8 +143,8 @@
                 <a href="contact.html" class="group">
                     <button
                         class="relative px-6 py-3 bg-gradient-to-r from-brand-accent to-blue-600 rounded-lg leading-none flex items-center gap-2 text-white font-bold shadow-[0_0_15px_rgba(6,182,212,0.3)] hover:shadow-[0_0_25px_rgba(6,182,212,0.6)] hover:scale-105 transition-all duration-300 border border-white/10">
-                        Start Project <i
-                            class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"></i>
+                        Start Project <i class="fas fa-arrow-right ml-1 group-hover:translate-x-1 transition-transform"
+                            aria-hidden="true"></i>
                     </button>
                 </a>
             </div>
@@ -180,6 +176,10 @@
                     security strategies for modern enterprises.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="year-review.html"
+                        class="group w-full sm:w-auto px-10 py-5 bg-cyan-950/40 text-cyan-400 font-bold rounded-xl border border-cyan-500/50 animate-pulse hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] hover:bg-cyan-500 hover:text-black transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1 backdrop-blur-md">
+                        <i class="fas fa-history text-xl"></i> <span>2025 RECAP</span>
+                    </a>
                     <a href="#services"
                         class="group w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-brand-accent to-blue-600 text-white font-bold rounded-xl hover:shadow-[0_0_40px_rgba(6,182,212,0.4)] transition-all duration-300 flex items-center justify-center gap-3 transform hover:-translate-y-1">
                         <span data-i18n="hero.view_services">View Services</span> <i
@@ -664,9 +664,11 @@
                         </div>
                         <div class="flex-shrink-0">
                             <a href="https://discord.gg/9uJtYAZMJr" target="_blank" rel="noopener noreferrer"
+                                aria-label="Join Discord Server"
                                 class="block transition-all duration-300 hover:scale-105 hover:rotate-2">
-                                <img alt="Join Discord" class="w-auto h-12 md:h-20 drop-shadow-lg"
-                                    src="/public/img/joinus.png">
+                                <img alt="Join FNetic Discord Community" loading="lazy"
+                                    class="w-auto h-12 md:h-20 drop-shadow-lg" src="../../public/img/joinus.png"
+                                    height="48">
                             </a>
                         </div>
                     </div>
@@ -686,7 +688,8 @@
                 <a href="/src/pages/contact.html"
                     class="px-10 py-5 bg-brand-accent text-black font-bold rounded-lg hover:bg-cyan-300 transition shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center gap-3 text-lg group">
                     <span data-i18n="cta.button">Estimate Project</span> <i
-                        class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"
+                        aria-hidden="true"></i>
                 </a>
             </div>
         </div>
@@ -698,20 +701,23 @@
 
                 <div class="space-y-4">
                     <div class="flex items-center gap-2 font-tech text-xl font-bold text-white">
-                        <img src="../../public/img/fneticlogo.png" class="h-6 w-auto" alt="FNetic Logo"> FNetic
+                        <img src="../../public/img/fneticlogo.png" loading="lazy" class="h-6 w-auto" alt="FNetic Logo"
+                            height="24">
+                        FNetic
                     </div>
                     <p class="text-gray-400 leading-relaxed" data-i18n="footer.desc">
                         Building the future of tech. Reliable software, scalable cloud infrastructure, and
                         uncompromising security.
                     </p>
                     <div class="flex gap-4 pt-2">
-                        <a href="https://github.com/fneticIT" target="_blank"
+                        <a href="https://github.com/fneticIT" target="_blank" aria-label="Visit our GitHub profile"
                             class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                            <i class="fab fa-github text-lg"></i>
+                            <i class="fab fa-github text-lg" aria-hidden="true"></i>
                         </a>
                         <a href="https://www.instagram.com/fnetic.it/" target="_blank"
+                            aria-label="Visit our Instagram profile"
                             class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all">
-                            <i class="fab fa-instagram text-lg"></i>
+                            <i class="fab fa-instagram text-lg" aria-hidden="true"></i>
                         </a>
                     </div>
                 </div>
@@ -780,7 +786,17 @@
         </div>
     </footer>
 
-    <script src="../js/main.js"></script>
+    <script src="https://unpkg.com/i18next@23.2.3/i18next.min.js" defer></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector@7.1.0/i18nextBrowserLanguageDetector.min.js"
+        defer></script>
+
+    <!-- Load Locales -->
+    <script src="../locales/en.js" defer></script>
+    <script src="../locales/pl.js" defer></script>
+    <script src="../locales/de.js" defer></script>
+
+    <script src="../js/min/i18n.min.js" defer></script>
+    <script src="../js/min/main.min.js" defer></script>
 
 
 </body>
