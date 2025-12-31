@@ -220,23 +220,73 @@ function updateEventsFromLocale() {
 }
 
 // Hook into i18n events
-if (window.i18next) {
-    window.i18next.on('languageChanged', () => {
+function initI18nEvents() {
+    if (window.i18next && window.i18next.isInitialized) {
+        window.i18next.on('languageChanged', (lng) => {
+            updateEventsFromLocale();
+
+            // Update Glitch Text Data Attribute
+            const title = document.querySelector('.glitch');
+            if (title) {
+                title.setAttribute('data-text', window.i18next.t('recap.log_title'));
+            }
+
+            // Re-render card if HUD is visible
+            if (!document.getElementById('hud-container').classList.contains('hidden')) {
+                showCard(currentIndex);
+            }
+
+            // Re-render timeline if visible and we are in the summary view
+            if (!document.getElementById('timeline-container').classList.contains('hidden')) {
+                const container = document.getElementById('timeline-content');
+                if (container) {
+                    container.innerHTML = '';
+                    events.forEach((ev, idx) => {
+                        const isLeft = idx % 2 === 0;
+                        const item = document.createElement('div');
+                        item.className = `relative flex items-center justify-between min-h-[200px] mb-12 group`;
+
+                        const contentHtml = `
+                            <div class="glass-hud p-8 rounded-2xl relative transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(6,182,212,0.2)] group-hover:border-cyan-500/40">
+                                 <div class="hidden md:block absolute top-1/2 ${isLeft ? '-right-12' : '-left-12'} w-12 h-0.5 bg-cyan-500/30 transform -translate-y-1/2"></div>
+                                 <div class="hidden md:block absolute top-1/2 ${isLeft ? '-right-1' : '-left-1'} w-3 h-3 bg-cyan-500/50 transform -translate-y-1/2 rotate-45"></div>
+                                <div class="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
+                                    <span class="font-mono-tech text-cyan-400 text-lg font-bold tracking-wider">${ev.date}</span>
+                                    <div class="h-px flex-grow bg-gradient-to-r from-cyan-500/20 to-transparent"></div>
+                                </div>
+                                <h3 class="font-bold text-white text-3xl font-tech mb-3 text-shadow-sm">${ev.title}</h3>
+                                <p class="text-gray-300 text-base leading-relaxed">${ev.desc}</p>
+                            </div>
+                        `;
+                        const imageHtml = `
+                            <div class="hidden md:flex flex-col items-center justify-center h-full w-full opacity-60 group-hover:opacity-100 transition-opacity duration-500 transform group-hover:scale-110 transition-transform">
+                                <div class="w-28 h-28 rounded-full bg-black/40 border border-cyan-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.15)] backdrop-blur-md">
+                                    <i class="fas ${ev.icon} text-5xl text-cyan-400 drop-shadow-[0_0_10px_rgba(34,211,238,0.5)]"></i>
+                                </div>
+                            </div>
+                        `;
+
+                        if (isLeft) {
+                            item.innerHTML = `<div class="w-full pl-12 md:pl-0 md:w-[45%] md:pr-16 md:text-right">${contentHtml}</div>
+                                              <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-[#020617] rounded-full border-2 border-cyan-400 z-10 box-border flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,1)] group-hover:scale-125 transition-transform duration-300"><div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div></div>
+                                              <div class="hidden md:block md:w-[45%] md:pl-16">${imageHtml}</div>`;
+                        } else {
+                            item.innerHTML = `<div class="hidden md:block md:w-[45%] md:pr-16">${imageHtml}</div>
+                                              <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-[#020617] rounded-full border-2 border-cyan-400 z-10 box-border flex items-center justify-center shadow-[0_0_15px_rgba(6,182,212,1)] group-hover:scale-125 transition-transform duration-300"><div class="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div></div>
+                                              <div class="w-full pl-12 md:pl-0 md:w-[45%] md:pl-16 text-left">${contentHtml}</div>`;
+                        }
+                        container.appendChild(item);
+                    });
+                }
+            }
+        });
         updateEventsFromLocale();
-        if (!document.getElementById('hud-container').classList.contains('hidden')) {
-            showCard(currentIndex);
-        }
-    });
-    window.i18next.on('initialized', updateEventsFromLocale);
-} else {
-    // Fallback check in case i18next loads after this script
-    // Since we used 'defer', they should be ready or close to it.
-    // We can also poll or just rely on the click listener which happens later.
-    document.addEventListener('i18nextInitialized', updateEventsFromLocale); // Custom event if i18n.min.js emits it, or just use a timeout
-    setTimeout(updateEventsFromLocale, 100);
-    setTimeout(updateEventsFromLocale, 500);
-    setTimeout(updateEventsFromLocale, 1000);
+    } else {
+        setTimeout(initI18nEvents, 100);
+    }
 }
+initI18nEvents();
+
 // Initial try
 updateEventsFromLocale();
 

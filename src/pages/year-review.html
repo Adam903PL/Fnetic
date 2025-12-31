@@ -176,29 +176,32 @@
             <div id="intro-screen" class="text-center interactive z-20 transition-all duration-700 w-full px-4">
                 <div
                     class="inline-block border border-cyan-500/30 px-4 py-1 rounded bg-cyan-900/20 mb-6 backdrop-blur-md">
-                    <span class="font-mono-tech text-cyan-400 animate-pulse text-xs md:text-sm">● SYSTEM READY</span>
+                    <span class="font-mono-tech text-cyan-400 animate-pulse text-xs md:text-sm"
+                        data-i18n="recap.system_ready">● SYSTEM READY</span>
                 </div>
                 <h1 class="text-5xl md:text-7xl lg:text-9xl font-black font-tech mb-6 glitch tracking-tighter break-words"
-                    data-text="2025 LOG">
+                    data-text="2025 LOG" data-i18n="recap.log_title">
                     2025 LOG
                 </h1>
-                <p
-                    class="text-gray-400 font-mono-tech text-xs md:text-sm lg:text-lg mb-8 md:mb-12 max-w-lg mx-auto leading-relaxed">
+                <p class="text-gray-400 font-mono-tech text-xs md:text-sm lg:text-lg mb-8 md:mb-12 max-w-lg mx-auto leading-relaxed"
+                    data-i18n="recap.intro_desc">
                     Initiating hyper-jump sequence through the yearly archives.
                 </p>
                 <button onclick="startSequence()"
                     class="group relative px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-bold font-tech text-lg md:text-xl clip-path-polygon transition-all shadow-[0_0_30px_rgba(8,145,178,0.5)] active:scale-95">
-                    ENGAGE HYPERDRIVE
+                    <span data-i18n="recap.engage_btn">ENGAGE HYPERDRIVE</span>
                 </button>
             </div>
 
             <div id="hud-container" class="hidden flex-col items-center w-full max-w-5xl interactive z-20 px-4 md:px-6">
                 <div class="w-full flex justify-between items-end mb-4 border-b border-white/10 pb-2">
                     <div class="text-[10px] md:text-xs font-mono-tech text-cyan-500">
-                        <span>STATUS:</span> <span id="velocity-display">STABLE</span>
+                        <span data-i18n="recap.status_label">STATUS:</span> <span id="velocity-display"
+                            data-i18n="recap.velocity_stable">STABLE</span>
                     </div>
                     <div class="text-[10px] md:text-xs font-mono-tech text-white">
-                        <span>EVENT:</span> <span id="progress-display" class="text-cyan-400">-- / --</span>
+                        <span data-i18n="recap.event_label">EVENT:</span> <span id="progress-display"
+                            class="text-cyan-400">-- / --</span>
                     </div>
                 </div>
 
@@ -232,7 +235,7 @@
                 <div class="mt-8 md:mt-12 flex gap-6">
                     <button id="next-btn" onclick="nextEvent()"
                         class="px-6 py-3 md:px-8 bg-white/5 border border-white/20 hover:border-cyan-400 hover:bg-cyan-500/10 text-white font-mono-tech transition-all flex items-center gap-2 group text-sm md:text-base rounded active:bg-white/10">
-                        <span>NEXT JUMP</span> <i
+                        <span data-i18n="recap.next_jump">NEXT JUMP</span> <i
                             class="fas fa-chevron-right group-hover:translate-x-1 transition-transform"></i>
                     </button>
                 </div>
@@ -249,9 +252,11 @@
                 <div id="outro-text"
                     class="text-center transition-all duration-1000 delay-300 transform translate-y-10 opacity-0">
                     <h2 class="text-3xl md:text-6xl font-black font-tech text-white mb-4 tracking-tight">
-                        THANK YOU FOR <span class="text-cyan-500 block md:inline">2025</span>
+                        <span data-i18n="recap.thank_you_title">THANK YOU FOR</span> <span
+                            class="text-cyan-500 block md:inline">2025</span>
                     </h2>
-                    <p class="text-gray-400 font-mono-tech text-sm md:text-xl tracking-widest">BUILDING THE FUTURE
+                    <p class="text-gray-400 font-mono-tech text-sm md:text-xl tracking-widest"
+                        data-i18n="recap.thank_you_desc">BUILDING THE FUTURE
                         TOGETHER</p>
                 </div>
             </div>
@@ -272,14 +277,16 @@
                         <div
                             class="inline-block border border-cyan-400/30 px-3 py-1 rounded bg-cyan-400/5 mb-6 backdrop-blur-md">
                             <span
-                                class="font-mono-tech text-cyan-400 animate-pulse text-[10px] md:text-xs tracking-widest">●
+                                class="font-mono-tech text-cyan-400 animate-pulse text-[10px] md:text-xs tracking-widest"
+                                data-i18n="recap.mission_accomplished">●
                                 MISSION ACCOMPLISHED</span>
                         </div>
-                        <h1
-                            class="text-3xl md:text-5xl lg:text-7xl font-black font-tech text-white mb-6 tracking-tight relative block">
+                        <h1 class="text-3xl md:text-5xl lg:text-7xl font-black font-tech text-white mb-6 tracking-tight relative block"
+                            data-i18n="recap.summary_title">
                             2025 SUMMARY
                         </h1>
-                        <p class="text-gray-400 font-inter text-sm md:text-lg max-w-2xl mx-auto leading-relaxed">
+                        <p class="text-gray-400 font-inter text-sm md:text-lg max-w-2xl mx-auto leading-relaxed"
+                            data-i18n="recap.summary_desc">
                             The year 2025 was a milestone period for FNetic, focused on building strong foundations.
                         </p>
                     </div>
@@ -292,12 +299,15 @@
                         </div>
                     </div>
 
-                    <div class="text-center">
-                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
-                            class="px-8 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-lg font-tech transition border border-white/10 active:scale-95">
-                            <i class="fas fa-arrow-up mr-2"></i> BACK TO TOP
-                        </button>
-                    </div>
+                    <!-- <div class="text-center">
+                        <div class="text-center">
+                            <button id="back-to-top-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+                                class="px-8 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-lg font-tech transition border border-white/10 active:scale-95">
+                                <i class="fas fa-arrow-up mr-2"></i> <span data-i18n="recap.back_to_top">BACK TO
+                                    TOP</span>
+                            </button>
+                        </div>
+                    </div> -->
                 </div>
 
                 <footer class="border-t border-white/5 bg-black/80 backdrop-blur-xl py-12 px-6 text-sm">
@@ -390,7 +400,8 @@
     <script src="../locales/pl.js" defer></script>
     <script src="../locales/de.js" defer></script>
 
-    <script src="../js/min/i18n.min.js" defer></script>
+    <script src="../js/i18n.js" defer></script>
+    <script src="../js/main.js" defer></script>
 
     <script src="../js/year-review.js" defer></script>
 
