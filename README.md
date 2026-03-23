@@ -2,7 +2,7 @@
 
 # 🌐 Fnetic Website
 
-**Fnetic** is a modern website built for the organization **Fnetic** ([https://fnetic.pl/](https://fnetic.pl/)), showcasing their services in software development, DevOps, cloud infrastructure, and cybersecurity.
+Fnetic is a modern website built for the organization **Fnetic** ([https://fnetic.pl/](https://fnetic.pl/)), showcasing their services in software development, DevOps, cloud infrastructure, and cybersecurity.
 
 The site serves as both a **company presentation platform** and a **client entry point** for starting new projects.
 
